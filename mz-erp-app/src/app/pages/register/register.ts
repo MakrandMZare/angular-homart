@@ -7,8 +7,8 @@ import { RouterLink } from '@angular/router';
   selector: 'register',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, RouterLink],
-  templateUrl: '/register.html',
-  styleUrls: '/register.scss'
+  templateUrl: './register.html',
+  styleUrls: ['./register.scss']
 })
 export class Register {
   registerForm: FormGroup;
