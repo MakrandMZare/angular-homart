@@ -1,12 +1,23 @@
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-md-5">
+    <div class="col-md-6">
       <div class="card shadow">
         <div class="card-body p-4">
-          <h3 class="text-center mb-4">User Login</h3>
+          <h3 class="text-center mb-4">Create Account</h3>
           
-          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
             
+            <!-- Full Name -->
+            <div class="mb-3">
+              <label class="form-label">Full Name</label>
+              <input type="text" formControlName="fullName" class="form-control" 
+                     [ngClass]="{ 'is-invalid': submitted && f['fullName'].errors }" />
+              <div *ngIf="submitted && f['fullName'].errors" class="invalid-feedback">
+                <div *ngIf="f['fullName']['errors']['required']">Full Name is required</div>
+                <div *ngIf="f['fullName']['errors']['minlength']">Name must be at least 3 characters</div>
+              </div>
+            </div>
+
             <!-- Email -->
             <div class="mb-3">
               <label class="form-label">Email Address</label>
@@ -18,7 +29,8 @@
               </div>
             </div>
 
-                        
+            
+
             <!-- Password -->
             <div class="mb-3">
               <label class="form-label">Password</label>
@@ -26,15 +38,15 @@
                      [ngClass]="{ 'is-invalid': submitted && f['password'].errors }" />
               <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
                 <div *ngIf="f['password']['errors']['required']">Password is required</div>
+                <div *ngIf="f['password']['errors']['minlength']">Password must be at least 6 characters</div>
               </div>
             </div>
 
             <!-- Submit Button -->
-            <button type="submit" class="btn btn-success w-100">Login</button>
+            <button type="submit" class="btn btn-primary w-100">Register</button>
             
             <div class="text-center">
-              <small>Don't have an account? <a routerLink="/register">Register here</a></small>
-              <small>Forgot password <a routerLink='/forgotpassword'>Forgot Password</a></small>
+              <small>Already have an account? <a routerLink="/login">Login here</a></small>
             </div>
           </form>
 

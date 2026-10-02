@@ -29,6 +29,17 @@
               </div>
             </div>
 
+            <!-- Mobile -->
+            <div class="mb-3">
+              <label class="form-label">Mobile</label>
+              <input type="mobile" formControlName="mobile" class="form-control" [ngClass]="{ 'is-invalid': sibmitted && f['mobile'].erros }" />
+              <div *ngIf="submitted && f['mobile'].errors" class="invalid-feedback">
+                <div *ngIf="f['mobile']['errors']['required']">Mobile number is required</div>
+                <div *ngIf="f['mobile']['errors']['minlength']">Enter valid mobile number must be 10 digit</div>
+              </div>
+            </div>
+            
+
             <!-- Password -->
             <div class="mb-3">
               <label class="form-label">Password</label>
@@ -37,6 +48,16 @@
               <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
                 <div *ngIf="f['password']['errors']['required']">Password is required</div>
                 <div *ngIf="f['password']['errors']['minlength']">Password must be at least 6 characters</div>
+              </div>
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="mb-3">
+              <label class="form-label">Confirm Password</label>
+              <input type="password1" formControlName="password1" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['password1'].errors }" />
+              <div *ngIf="submitted && f['password1'].errors" class="invalid-feedback">
+                <div *ngIf="f['password1']['errors']['required']">Confirm password must same as Password</div>
+                <div *ngIf="f['password1']['errors']['value='password']">Confirm Password must be same</div>
               </div>
             </div>
 
