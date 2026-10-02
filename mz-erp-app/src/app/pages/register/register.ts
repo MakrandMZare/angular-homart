@@ -20,7 +20,7 @@ export class Register {
       email: ['', [Validators.required, Validators.email]],
       mobile: ['', [Validators.required, Validators.minLength(10)]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      password1: ['', [Validators.required, Validators.value='password']]
+      password1: ['', [Validators.required, 'password']]
     });
   }
 
