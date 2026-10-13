@@ -1,4 +1,4 @@
-AWSTemplateFormatVersion: "2010-09-09"
+AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 
 Resources:
@@ -18,14 +18,30 @@ Resources:
           Type: SNS
           Properties:
             Topic: !Ref ProcessingTopic
+  Api:
+    Type: AWS::Serverless::Api
+    Properties:
+      Name: !Sub
+        - ${ResourceName} From Stack ${AWS::StackName}
+        - ResourceName: Api
+      StageName: Prod
+      DefinitionBody:
+        openapi: '3.0'
+        info: {}
+        paths:
+          /:
+            get:
+              responses: {}
+      EndpointConfiguration: REGIONAL
+      TracingEnabled: true
 
 Outputs:
   ProcessingTopicArn:
-    Description: "SNS Topic ARN"
+    Description: SNS Topic ARN
     Value: !Ref ProcessingTopic
   ProcessorFunctionName:
-    Description: "Lambda Function Name"
-    Value: !Ref ProcessorFunction    
+    Description: Lambda Function Name
+    Value: !Ref ProcessorFunction
   ProcessorFunctionARN:
-    Description: "Lambda Function ARN"
+    Description: Lambda Function ARN
     Value: !GetAtt ProcessorFunction.Arn
